@@ -1,0 +1,2297 @@
+プロジェクトログを有効化した時間: 2021/03/02 11:23:14
+"05_グラフ描画" の実行ログ(時間: 2021/03/02 11:23:50、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='05_グラフ描画';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\05_グラフ描画.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /* 文字スタイルを変更 */
+27         proc template;
+28         	define style styles.htmlblue2;
+29         	parent=styles.htmlblue;
+30         	class GraphFonts /
+31         	  'NodeDetailFont' = ("&gfont",7pt)
+32         	  'NodeInputLabelFont' = ("&gfont",9pt)
+33         	  'NodeLabelFont' = ("&gfont",9pt)
+34         	  'NodeTitleFont' = ("&gfont",9pt)
+35         	  'GraphDataFont' = ("&gfont",7pt)
+36         	  'GraphUnicodeFont' = ("&gfont",9pt)
+37         	  'GraphValueFont' = ("&gfont",9pt)
+38         	  'GraphLabel2Font' = ("&gfont",10pt)
+39         	  'GraphLabelFont' = ("&gfont",10pt)
+40         	  'GraphFootnoteFont' = ("&gfont",10pt)
+41         	  'GraphTitleFont' = ("&gfont",11pt,bold)
+42         	  'GraphTitle1Font' = ("&gfont",14pt,bold)
+43         	  'GraphAnnoFont' = ("&gfont",10pt);
+44         	end;
+NOTE: 既存のテンプレート/リンクStyles.Htmlblue2を上書きします。
+NOTE: STYLE 'Styles.Htmlblue2'をSASUSER.TEMPLATに保存しました。
+45         run;
+NOTE: PROCEDURE TEMPLATE処理(合計処理時間):
+      処理時間           0.01 秒
+      CPU時間            0.01 秒
+      
+
+46         filename graph "&outpath.\gragh.htm" ;
+47         ods html style=htmlblue2 path="&outpath." file='graph.html' ;
+NOTE: HTML Bodyファイルの書き込み先: graph.html
+ERROR: C:\Users\user\Documents\データサイエンティスト\ポートフォリオ作成\output\graph.htmlが存在しません。
+ERROR: Bodyファイルがありません。HTML出力は作成されません。
+48         
+49         /* 折れ線グラフ作成 */
+50         ods listing gpath="C:\Users\user\Documents\データサイエンティスト\ポートフォリオ作成" style=htmlblue2;
+51         axis2 label=(font=mincho h=1.5 ANGLE=-90 ROTATE=90 '性別');
+52         proc sgplot data= work.netflix_tran;
+53         	vline rating_/response=Movie;
+54         	vline rating_/response='tv show'n;
+55         run;
+
+NOTE: PROCEDURE SGPLOT処理(合計処理時間):
+      処理時間           48.58 秒
+      CPU時間            0.53 秒
+      
+WARNING: GPATHまたはPATHは書き込み可能なディレクトリではありません。無視されます。
+ERROR: イメージを C:\Windows\system32\SGPlot1.png に書き込めません。適切なディスク権限が設定されていることを確認してください。
+NOTE: エラーが発生したため、このステップの処理を中止しました。
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+56         
+57         GOPTIONS NOACCESSIBLE;
+58         %LET _CLIENTTASKLABEL=;
+59         %LET _CLIENTPROCESSFLOWNAME=;
+60         %LET _CLIENTPROJECTPATH=;
+61         %LET _CLIENTPROJECTPATHHOST=;
+62         %LET _CLIENTPROJECTNAME=;
+63         %LET _SASPROGRAMFILE=;
+64         %LET _SASPROGRAMFILEHOST=;
+65         
+66         ;*';*";*/;quit;run;
+67         ODS _ALL_ CLOSE;
+68         
+69         
+70         QUIT; RUN;
+71         
+"05_グラフ描画" の実行ログ(時間: 2021/03/02 11:25:57、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='05_グラフ描画';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\05_グラフ描画.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /* 文字スタイルを変更 */
+
+
+27         proc template;
+28         	define style styles.htmlblue2;
+29         	parent=styles.htmlblue;
+30         	class GraphFonts /
+31         	  'NodeDetailFont' = ("&gfont",7pt)
+32         	  'NodeInputLabelFont' = ("&gfont",9pt)
+33         	  'NodeLabelFont' = ("&gfont",9pt)
+34         	  'NodeTitleFont' = ("&gfont",9pt)
+35         	  'GraphDataFont' = ("&gfont",7pt)
+36         	  'GraphUnicodeFont' = ("&gfont",9pt)
+37         	  'GraphValueFont' = ("&gfont",9pt)
+38         	  'GraphLabel2Font' = ("&gfont",10pt)
+39         	  'GraphLabelFont' = ("&gfont",10pt)
+40         	  'GraphFootnoteFont' = ("&gfont",10pt)
+41         	  'GraphTitleFont' = ("&gfont",11pt,bold)
+42         	  'GraphTitle1Font' = ("&gfont",14pt,bold)
+43         	  'GraphAnnoFont' = ("&gfont",10pt);
+44         	end;
+NOTE: 既存のテンプレート/リンクStyles.Htmlblue2を上書きします。
+NOTE: STYLE 'Styles.Htmlblue2'をSASUSER.TEMPLATに保存しました。
+45         run;
+NOTE: PROCEDURE TEMPLATE処理(合計処理時間):
+      処理時間           0.01 秒
+      CPU時間            0.00 秒
+      
+
+46         filename graph "&outpath.\gragh.htm" ;
+47         ods html style=htmlblue2 path="&outpath." file='graph.html' ;
+NOTE: HTML Bodyファイルの書き込み先: graph.html
+ERROR: C:\Users\user\Documents\データサイエンティスト\ポートフォリオ作成\output\graph.htmlが存在しません。
+ERROR: Bodyファイルがありません。HTML出力は作成されません。
+48         
+49         /* 折れ線グラフ作成 */
+50         ods listing gpath="C:\Users\user\Documents\DataScientist\PortFolio\Netflix" style=htmlblue2;
+51         axis2 label=(font=mincho h=1.5 ANGLE=-90 ROTATE=90 '性別');
+52         proc sgplot data= work.netflix_tran;
+53         	vline rating_/response=Movie;
+54         	vline rating_/response='tv show'n;
+55         run;
+
+NOTE: PROCEDURE SGPLOT処理(合計処理時間):
+      処理時間           0.72 秒
+      CPU時間            0.29 秒
+      
+NOTE: C:\Users\user\Documents\DataScientist\PortFolio\Netflix\SGPlot3.pngに書き込まれたイメージ出力を一覧表示します。
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+
+56         
+57         GOPTIONS NOACCESSIBLE;
+58         %LET _CLIENTTASKLABEL=;
+59         %LET _CLIENTPROCESSFLOWNAME=;
+60         %LET _CLIENTPROJECTPATH=;
+61         %LET _CLIENTPROJECTPATHHOST=;
+62         %LET _CLIENTPROJECTNAME=;
+63         %LET _SASPROGRAMFILE=;
+64         %LET _SASPROGRAMFILEHOST=;
+65         
+66         ;*';*";*/;quit;run;
+67         ODS _ALL_ CLOSE;
+68         
+69         
+70         QUIT; RUN;
+71         
+"01_初期読み込み" の実行ログ(時間: 2021/03/02 11:26:45、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='01_初期読み込み';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\01_初期読み込み.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /* プログラム初期化 */
+27         /* 出力PATH */
+28         %let outpath = C:\Users\user\Documents\DataScientist\PortFolio\Netflix\output;
+29         %let gfont=Arial Unicode MS;
+30         
+31         /* フォーマット定義 */
+32         proc format;
+33         	
+33       !  value $MovieType
+34         		'1' = 'Movie'
+35         		'2' = 'TV Show'
+36         	;
+NOTE: 出力形式$MOVIETYPEはすでにライブラリWORK.FORMATSに存在します。
+NOTE: 出力形式$MOVIETYPEを作成しました。
+37         run;
+
+NOTE: PROCEDURE FORMAT処理(合計処理時間):
+      処理時間           0.00 秒
+      CPU時間            0.01 秒
+      
+
+38         
+39         
+40         
+41         GOPTIONS NOACCESSIBLE;
+42         %LET _CLIENTTASKLABEL=;
+43         %LET _CLIENTPROCESSFLOWNAME=;
+44         %LET _CLIENTPROJECTPATH=;
+45         %LET _CLIENTPROJECTPATHHOST=;
+46         %LET _CLIENTPROJECTNAME=;
+47         %LET _SASPROGRAMFILE=;
+48         %LET _SASPROGRAMFILEHOST=;
+49         
+50         ;*';*";*/;quit;run;
+51         ODS _ALL_ CLOSE;
+52         
+53         
+54         QUIT; RUN;
+55         
+"データ (netflix_titles.csv) のインポート" の実行ログ(時間: 2021/03/02 11:26:47、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          /* --------------------------------------------------------------------
+4             SAS タスクによる生成コード
+5          
+6             生成時間: 2021年3月2日 11:26:46
+7             タスク:     データのインポートウィザード
+8          
+9             ソースファイル: C:\Users\user\Documents\DataScientist\PortFolio\Netflix
+10            etflix_titles.csv
+11            サーバー:      ローカルファイルシステム
+12         
+13            出力データ: WORK.netflix_titles
+14            サーバー:      Local
+15            -------------------------------------------------------------------- */
+16         
+17         DATA WORK.netflix_titles;
+18             LENGTH
+19                 show_id            8
+20                 type             $ 7
+21                 title            $ 104
+22                 director         $ 208
+23                 cast             $ 771
+24                 country          $ 123
+25                 date_added       $ 28
+26                 release_year     $ 51
+27                 rating           $ 29
+28                 duration         $ 54
+29                 listed_in        $ 151
+30                 description      $ 250
+31                 F13              $ 18
+32                 F14              $ 51
+33                 F15              $ 133
+34                 F16              $ 134
+35                 F17              $ 35
+36                 F18              $ 142
+37                 F19              $ 151
+38                 F20              $ 145
+39                 F21              $ 120
+40                 F22              $ 17
+41                 F23              $ 4
+42                 F24              $ 7
+43                 F25              $ 28
+44                 F26              $ 148
+45                 F27              $ 151 ;
+46             FORMAT
+47                 show_id          BEST8.
+48                 type             $CHAR7.
+49                 title            $CHAR104.
+50                 director         $CHAR208.
+51                 cast             $CHAR771.
+52                 country          $CHAR123.
+53                 date_added       $CHAR28.
+54                 release_year     $CHAR51.
+55                 rating           $CHAR29.
+56                 duration         $CHAR54.
+57                 listed_in        $CHAR151.
+58                 description      $CHAR250.
+59                 F13              $CHAR18.
+60                 F14              $CHAR51.
+61                 F15              $CHAR133.
+62                 F16              $CHAR134.
+63                 F17              $CHAR35.
+64                 F18              $CHAR142.
+65                 F19              $CHAR151.
+66                 F20              $CHAR145.
+67                 F21              $CHAR120.
+68                 F22              $CHAR17.
+69                 F23              $CHAR4.
+70                 F24              $CHAR7.
+71                 F25              $CHAR28.
+72                 F26              $CHAR148.
+73                 F27              $CHAR151. ;
+74             INFORMAT
+75                 show_id          BEST8.
+76                 type             $CHAR7.
+77                 title            $CHAR104.
+78                 director         $CHAR208.
+79                 cast             $CHAR771.
+80                 country          $CHAR123.
+81                 date_added       $CHAR28.
+82                 release_year     $CHAR51.
+83                 rating           $CHAR29.
+84                 duration         $CHAR54.
+85                 listed_in        $CHAR151.
+86                 description      $CHAR250.
+87                 F13              $CHAR18.
+88                 F14              $CHAR51.
+89                 F15              $CHAR133.
+90                 F16              $CHAR134.
+91                 F17              $CHAR35.
+92                 F18              $CHAR142.
+93                 F19              $CHAR151.
+94                 F20              $CHAR145.
+95                 F21              $CHAR120.
+96                 F22              $CHAR17.
+97                 F23              $CHAR4.
+98                 F24              $CHAR7.
+99                 F25              $CHAR28.
+100                F26              $CHAR148.
+101                F27              $CHAR151. ;
+102            INFILE 'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-e8b09012fce34c299beb0164f2f25077.txt'
+103                LRECL=1045
+104                ENCODING="SHIFT-JIS"
+105                TERMSTR=CRLF
+106                DLM='7F'x
+107                MISSOVER
+108                DSD ;
+109            INPUT
+110                show_id          : ?? BEST8.
+111                type             : $CHAR7.
+112                title            : $CHAR104.
+113                director         : $CHAR208.
+114                cast             : $CHAR771.
+115                country          : $CHAR123.
+116                date_added       : $CHAR28.
+117                release_year     : $CHAR51.
+118                rating           : $CHAR29.
+119                duration         : $CHAR54.
+120                listed_in        : $CHAR151.
+121                description      : $CHAR250.
+122                F13              : $CHAR18.
+123                F14              : $CHAR51.
+124                F15              : $CHAR133.
+125                F16              : $CHAR134.
+126                F17              : $CHAR35.
+127                F18              : $CHAR142.
+128                F19              : $CHAR151.
+129                F20              : $CHAR145.
+130                F21              : $CHAR120.
+131                F22              : $CHAR17.
+132                F23              : $CHAR4.
+133                F24              : $CHAR7.
+134                F25              : $CHAR28.
+135                F26              : $CHAR148.
+136                F27              : $CHAR151. ;
+137        RUN;
+
+NOTE: 入力ファイル'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-e8b09012fce34c299beb0164f2f25077.txt' :
+      ファイル名=C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-e8b09012fce34c299beb0164f2f25077.txt,
+      レコードフォーマット=V,論理レコード長=2090,
+      ファイルサイズ (バイト)=2370000,
+      更新日時=2021年03月02日 11時26分46秒,
+      作成日時=2021年03月02日 11時26分46秒
+
+NOTE: 6231レコードを入力ファイル'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-e8b09012fce34c299beb0164f2f25077.txt'から読み
+      込みました。
+      最小レコード長は207です。
+      最大レコード長は1045です。
+NOTE: データセットWORK.NETFLIX_TITLESは6231オブザベーション、27変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.17 秒
+      CPU時間            0.07 秒
+      
+
+138        
+139        QUIT; RUN;
+140        
+"02_データ加工_ポートフォリオ__egp" の実行ログ(時間: 2021/03/02 11:26:49、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET SYSLAST=WORK.NETFLIX_TITLES;
+4          %LET _CLIENTTASKLABEL='02_データ加工_ポートフォリオ__egp';
+5          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+6          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+7          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+8          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+9          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\02_データ加工_ポートフォリオ__egp.sas';
+10         %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+11         
+12         ODS _ALL_ CLOSE;
+13         OPTIONS DEV=PNG;
+14         GOPTIONS XPIXELS=0 YPIXELS=0;
+15         FILENAME EGSR TEMP;
+16         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+17             STYLE=HtmlBlue
+18             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+19             NOGTITLE
+20             NOGFOOTNOTE
+21             GPATH=&sasworklocation
+22             ENCODING=UTF8
+23             options(rolap="on")
+24         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+25         
+26         GOPTIONS ACCESSIBLE;
+27         data Netflix_remake;
+28         	set WORK.NETFLIX_TITLES;
+29         	attrib rating_ length=$4;
+30         	attrib type_   length=$10 format=MovieType.;
+31         	attrib duration_hour format=8.2;
+32         
+33         	/*--- type加工 ---*/
+34         	/* Movie   1 */
+35         	/* TV Show 2 */
+36         	select(type);
+37         		when ('Movie')   type_ = '1';
+38         		when ('TV Show') type_ = '2';
+39         		otherwise type_ = '';
+40         	end;
+41         
+42         	/*--- rating加工 ---*/
+43         	/*G,NR,PG,TV-G,TV-PG	all */
+44         	/*TV-Y	                2 - */
+45         	/*TV-Y7,TV-Y7-FV        7 - */
+46         	/*PG-13	                13 -*/
+47         	/*TV-14	                14 -*/	
+48         	/*NC-17	                17 -*/	
+49         	/*R	                    18 -*/	
+50         	/*TV-MA,UR	            20 -*/	
+51         	select ;
+52         		when (rating in ('G','NR','PG','TV-G','TV-PG')) rating_ = 'all';
+53         		when (rating = 'NC-17') rating_ = '17 -';
+54         		when (rating = 'PG-13') rating_ = '13 -';
+55         		when (rating = 'R')     rating_ = '18 -';
+56         		when (rating = 'TV-14') rating_ = '14 -';
+57         		when (rating = 'TV-MA') rating_ = '20 -';
+58         		when (rating = 'TV-Y')  rating_ = '2 -';
+59         		when (rating in ('TV-Y7','TV-Y7-FV')) rating_ = '7 -';
+60         		when (rating = 'UR')    rating_ = '20 -';
+61         		otherwise rating_ = 'all';
+62         	end;
+63         
+64         	/*--- duration加工 ---*/
+65         	/* 1Season → 22話 × 30min */
+66         	if compress(index(duration,'min')) > 0
+67         		then duration_min = input(substr(duration,1,input(compress(index(duration,'min')),10.)-1),10.);
+68         	else if compress(index(duration,'Season')) > 0
+69         		then duration_min = input(substr(duration,1,input(compress(index(duration,'Season')),10.)-1),10.) * 22 * 30;
+70         	else duration_min = 0;
+71         	/* min → hour */
+72         	duration_hour = duration_min / 60;
+73         
+74         	/*--- release_year加工 ---*/
+75         	select(substr(release_year,1,2));
+76         		when ('19') ;
+77         		when ('20') ;
+78         		otherwise release_year = '';
+79         	end;
+80         run;
+
+NOTE: 以下の箇所で数値を文字値に変換しました。(行:カラム)
+      66:14   67:62   68:19   69:62   
+NOTE: 以下の箇所で文字値を数値に変換しました。(行:カラム)
+      66:5    68:10   
+NOTE: データセットWORK.NETFLIX_TITLESから6231オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_REMAKEは6231オブザベーション、31変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.13 秒
+      CPU時間            0.09 秒
+      
+
+81         
+82         GOPTIONS NOACCESSIBLE;
+83         %LET _CLIENTTASKLABEL=;
+84         %LET _CLIENTPROCESSFLOWNAME=;
+85         %LET _CLIENTPROJECTPATH=;
+86         %LET _CLIENTPROJECTPATHHOST=;
+87         %LET _CLIENTPROJECTNAME=;
+88         %LET _SASPROGRAMFILE=;
+89         %LET _SASPROGRAMFILEHOST=;
+90         
+91         ;*';*";*/;quit;run;
+92         ODS _ALL_ CLOSE;
+93         
+94         
+95         QUIT; RUN;
+96         
+"03_集計" の実行ログ(時間: 2021/03/02 11:26:51、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='03_集計';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\03_集計.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /*--- レーティングと映像タイプ（テレビ番組、映画）の集計 ---*/
+27         proc freq data=NETFLIX_REMAKE ;
+28         	table rating_ * type_ / nopercent norow nocol out=NETFLIX_freq noprint;
+29         run;
+
+NOTE: データセットWORK.NETFLIX_REMAKEから6231オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_FREQは14オブザベーション、4変数です。
+NOTE: PROCEDURE FREQ処理(合計処理時間):
+      処理時間           0.10 秒
+      CPU時間            0.11 秒
+      
+
+30         
+31         /*--- 帳票作成 ---*/
+32         /* 転置 */
+33         proc transpose data=work.netflix_freq out=work.netflix_tran(drop=_NAME_ _LABEL_);
+34         	var COUNT;
+35         	by  rating_;
+36         	id  type_;
+37         run;
+
+NOTE: データセットWORK.NETFLIX_FREQから14オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_TRANは8オブザベーション、3変数です。
+NOTE: PROCEDURE TRANSPOSE処理(合計処理時間):
+      処理時間           0.06 秒
+      CPU時間            0.06 秒
+      
+
+38         /* 欠損値処理 */
+39         data work.netflix_tran;
+40         	length rating_ $9.;
+41         	length Movie_ 'tv show_'n $10.;
+42         	set work.netflix_tran;
+43         	if Movie      = . then Movie      = 0;
+44         	if 'tv show'n = . then 'tv show'n = 0;
+45         	Movie_      = compress(put(Movie,5.));
+46         	'tv show_'n = compress(put('tv show'n,5.));
+47         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_TRANは8オブザベーション、5変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.04 秒
+      CPU時間            0.04 秒
+      
+
+48         
+49         GOPTIONS NOACCESSIBLE;
+50         %LET _CLIENTTASKLABEL=;
+51         %LET _CLIENTPROCESSFLOWNAME=;
+52         %LET _CLIENTPROJECTPATH=;
+53         %LET _CLIENTPROJECTPATHHOST=;
+54         %LET _CLIENTPROJECTNAME=;
+55         %LET _SASPROGRAMFILE=;
+56         %LET _SASPROGRAMFILEHOST=;
+57         
+58         ;*';*";*/;quit;run;
+59         ODS _ALL_ CLOSE;
+60         
+61         
+62         QUIT; RUN;
+63         
+"04_分析" の実行ログ(時間: 2021/03/02 11:26:53、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='04_分析';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\04_分析.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /*--- 映像タイプ毎の継続時間（h）の分析 ---*/
+27         proc univariate data=NETFLIX_REMAKE noprint;
+28         	var duration_hour;
+29         	output out=NETFLIX_univari min=MIN_dur max=MAX_dur mean=MEAN_dur;
+30         	class type_;
+31         run;
+
+NOTE: データセットWORK.NETFLIX_UNIVARIは2オブザベーション、4変数です。
+NOTE: PROCEDURE UNIVARIATE処理(合計処理時間):
+      処理時間           0.06 秒
+      CPU時間            0.04 秒
+      
+
+32         
+33         /* 最大値と最小値加工 */
+34         data NETFLIX_MIN_MAX(keep=type_ MEAN_dur_ min_max);
+35         	set NETFLIX_univari;
+36         	attrib min_max   length=$10;
+37         	attrib MEAN_dur_ length=$8;
+38         	min_max = compress(put(MIN_dur,2.)) || ' - ' || compress(put(MAX_dur,5.));
+39         	MEAN_dur_ = compress(put(MEAN_dur,8.2));
+40         run;
+
+NOTE: データセットWORK.NETFLIX_UNIVARIから2オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_MIN_MAXは2オブザベーション、3変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.03 秒
+      CPU時間            0.03 秒
+      
+
+41         
+42         /*--- 帳票作成 ---*/
+43         proc transpose data=NETFLIX_MIN_MAX out=NETFLIX_DUR_TRAN;
+44         	var MEAN_dur_ min_max;
+45         	id type_;
+46         run;
+
+NOTE: データセットWORK.NETFLIX_MIN_MAXから2オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_DUR_TRANは2オブザベーション、3変数です。
+NOTE: PROCEDURE TRANSPOSE処理(合計処理時間):
+      処理時間           0.05 秒
+      CPU時間            0.06 秒
+      
+
+47         
+48         GOPTIONS NOACCESSIBLE;
+49         %LET _CLIENTTASKLABEL=;
+50         %LET _CLIENTPROCESSFLOWNAME=;
+51         %LET _CLIENTPROJECTPATH=;
+52         %LET _CLIENTPROJECTPATHHOST=;
+53         %LET _CLIENTPROJECTNAME=;
+54         %LET _SASPROGRAMFILE=;
+55         %LET _SASPROGRAMFILEHOST=;
+56         
+57         ;*';*";*/;quit;run;
+58         ODS _ALL_ CLOSE;
+59         
+60         
+61         QUIT; RUN;
+62         
+"05_グラフ描画" の実行ログ(時間: 2021/03/02 11:26:56、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='05_グラフ描画';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\05_グラフ描画.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /* 文字スタイルを変更 */
+27         proc template;
+28         	define style styles.htmlblue2;
+29         	parent=styles.htmlblue;
+30         	class GraphFonts /
+31         	  'NodeDetailFont' = ("&gfont",7pt)
+32         	  'NodeInputLabelFont' = ("&gfont",9pt)
+33         	  'NodeLabelFont' = ("&gfont",9pt)
+34         	  'NodeTitleFont' = ("&gfont",9pt)
+35         	  'GraphDataFont' = ("&gfont",7pt)
+36         	  'GraphUnicodeFont' = ("&gfont",9pt)
+37         	  'GraphValueFont' = ("&gfont",9pt)
+38         	  'GraphLabel2Font' = ("&gfont",10pt)
+39         	  'GraphLabelFont' = ("&gfont",10pt)
+40         	  'GraphFootnoteFont' = ("&gfont",10pt)
+41         	  'GraphTitleFont' = ("&gfont",11pt,bold)
+42         	  'GraphTitle1Font' = ("&gfont",14pt,bold)
+43         	  'GraphAnnoFont' = ("&gfont",10pt);
+44         	end;
+NOTE: 既存のテンプレート/リンクStyles.Htmlblue2を上書きします。
+NOTE: STYLE 'Styles.Htmlblue2'をSASUSER.TEMPLATに保存しました。
+45         run;
+NOTE: PROCEDURE TEMPLATE処理(合計処理時間):
+      処理時間           0.00 秒
+      CPU時間            0.01 秒
+      
+
+46         filename graph "&outpath.\gragh.htm" ;
+47         ods html style=htmlblue2 path="&outpath." file='graph.html' ;
+NOTE: HTML Bodyファイルの書き込み先: graph.html
+48         
+49         /* 折れ線グラフ作成 */
+50         ods listing gpath="C:\Users\user\Documents\DataScientist\PortFolio\Netflix" style=htmlblue2;
+51         axis2 label=(font=mincho h=1.5 ANGLE=-90 ROTATE=90 '性別');
+52         proc sgplot data= work.netflix_tran;
+53         	vline rating_/response=Movie;
+54         	vline rating_/response='tv show'n;
+55         run;
+
+NOTE: PROCEDURE SGPLOT処理(合計処理時間):
+      処理時間           0.87 秒
+      CPU時間            0.45 秒
+      
+NOTE: C:\Users\user\Documents\DataScientist\PortFolio\Netflix\SGPlot6.pngに書き込まれたイメージ出力を一覧表示します。
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+
+56         
+57         GOPTIONS NOACCESSIBLE;
+58         %LET _CLIENTTASKLABEL=;
+59         %LET _CLIENTPROCESSFLOWNAME=;
+60         %LET _CLIENTPROJECTPATH=;
+61         %LET _CLIENTPROJECTPATHHOST=;
+62         %LET _CLIENTPROJECTNAME=;
+63         %LET _SASPROGRAMFILE=;
+64         %LET _SASPROGRAMFILEHOST=;
+65         
+66         ;*';*";*/;quit;run;
+67         ODS _ALL_ CLOSE;
+68         
+69         
+70         QUIT; RUN;
+71         
+"06_帳票作成" の実行ログ(時間: 2021/03/02 11:26:59、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='06_帳票作成';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\06_帳票作成.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /*--- データ縦積み ---*/
+27         data table1;
+28         	set NETFLIX_TRAN(drop=Movie 'TV show'n rename=(rating_ = _NAME_)) NETFLIX_DUR_TRAN(rename=(Movie=Movie_ 'TV Show'n='TV
+28       ! Show_'n));
+29         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_DUR_TRANから2オブザベーションを読み込みました。
+NOTE: データセットWORK.TABLE1は10オブザベーション、3変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.07 秒
+      CPU時間            0.04 秒
+      
+
+30         
+31         /*--- ワードに出力 ---*/
+32         ods rtf file = 'C:\Users\user\Documents\データサイエンティスト\ポートフォリオ作成\output\nexflix.rtf'
+32       ! style=Styles.Default  ;
+ERROR: C:\Users\user\Documents\データサイエンティスト\ポートフォリオ作成\output\nexflix.rtfが存在しません。
+ERROR: 致命的な ODS エラーが発生しました。出力処理を継続できません。
+WARNING: Bodyファイルがありません。RTF出力は作成されていません。
+33         proc report data=work.netflix_tran missing
+34         	style(column) = {asis=off background=white vjust=center};
+35         	column rating_ ('ムービータイプ' Movie 'tv show'n);
+36         	define rating_ / 'レート' order;
+37         	define Movie   / '映画';
+38         	define 'tv show'n   / 'テレビ番組';
+39         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: PROCEDURE REPORT処理(合計処理時間):
+      処理時間           0.10 秒
+      CPU時間            0.01 秒
+      
+
+40         ods rtf close;
+41         
+42         GOPTIONS NOACCESSIBLE;
+43         %LET _CLIENTTASKLABEL=;
+44         %LET _CLIENTPROCESSFLOWNAME=;
+45         %LET _CLIENTPROJECTPATH=;
+46         %LET _CLIENTPROJECTPATHHOST=;
+47         %LET _CLIENTPROJECTNAME=;
+48         %LET _SASPROGRAMFILE=;
+49         %LET _SASPROGRAMFILEHOST=;
+50         
+51         ;*';*";*/;quit;run;
+52         ODS _ALL_ CLOSE;
+53         
+54         
+55         QUIT; RUN;
+56         
+"06_帳票作成" の実行ログ(時間: 2021/03/02 11:28:24、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='06_帳票作成';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\06_帳票作成.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /*--- データ縦積み ---*/
+27         data table1;
+28         	set NETFLIX_TRAN(drop=Movie 'TV show'n rename=(rating_ = _NAME_)) NETFLIX_DUR_TRAN(rename=(Movie=Movie_ 'TV Show'n='TV
+28       ! Show_'n));
+29         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_DUR_TRANから2オブザベーションを読み込みました。
+NOTE: データセットWORK.TABLE1は10オブザベーション、3変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.05 秒
+      CPU時間            0.06 秒
+      
+
+30         
+31         /*--- ワードに出力 ---*/
+32         ods rtf file = "&outpath.\nexflix.rtf" style=Styles.Default  ;
+NOTE: RTF Bodyファイルの書き込み先: C:\Users\user\Documents\DataScientist\PortFolio\Netflix\output\nexflix.rtf
+33         proc report data=work.netflix_tran missing
+34         	style(column) = {asis=off background=white vjust=center};
+35         	column rating_ ('ムービータイプ' Movie 'tv show'n);
+36         	define rating_ / 'レート' order;
+37         	define Movie   / '映画';
+38         	define 'tv show'n   / 'テレビ番組';
+39         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: PROCEDURE REPORT処理(合計処理時間):
+      処理時間           0.06 秒
+      CPU時間            0.04 秒
+      
+
+40         ods rtf close;
+41         
+42         GOPTIONS NOACCESSIBLE;
+43         %LET _CLIENTTASKLABEL=;
+44         %LET _CLIENTPROCESSFLOWNAME=;
+45         %LET _CLIENTPROJECTPATH=;
+46         %LET _CLIENTPROJECTPATHHOST=;
+47         %LET _CLIENTPROJECTNAME=;
+48         %LET _SASPROGRAMFILE=;
+49         %LET _SASPROGRAMFILEHOST=;
+50         
+51         ;*';*";*/;quit;run;
+52         ODS _ALL_ CLOSE;
+53         
+54         
+55         QUIT; RUN;
+56         
+"01_初期読み込み" の実行ログ(時間: 2021/03/02 11:28:56、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='01_初期読み込み';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\01_初期読み込み.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /* プログラム初期化 */
+27         /* 出力PATH */
+28         %let outpath = C:\Users\user\Documents\DataScientist\PortFolio\Netflix\output;
+29         %let gfont=Arial Unicode MS;
+30         
+31         /* フォーマット定義 */
+32         proc format;
+33         	
+33       !  value $MovieType
+34         		'1' = 'Movie'
+35         		'2' = 'TV Show'
+36         	;
+NOTE: 出力形式$MOVIETYPEはすでにライブラリWORK.FORMATSに存在します。
+NOTE: 出力形式$MOVIETYPEを作成しました。
+37         run;
+
+NOTE: PROCEDURE FORMAT処理(合計処理時間):
+      処理時間           0.00 秒
+      CPU時間            0.00 秒
+      
+
+38         
+39         
+40         
+41         GOPTIONS NOACCESSIBLE;
+42         %LET _CLIENTTASKLABEL=;
+43         %LET _CLIENTPROCESSFLOWNAME=;
+44         %LET _CLIENTPROJECTPATH=;
+45         %LET _CLIENTPROJECTPATHHOST=;
+46         %LET _CLIENTPROJECTNAME=;
+47         %LET _SASPROGRAMFILE=;
+48         %LET _SASPROGRAMFILEHOST=;
+49         
+50         ;*';*";*/;quit;run;
+51         ODS _ALL_ CLOSE;
+52         
+53         
+54         QUIT; RUN;
+55         
+"データ (netflix_titles.csv) のインポート" の実行ログ(時間: 2021/03/02 11:28:57、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          /* --------------------------------------------------------------------
+4             SAS タスクによる生成コード
+5          
+6             生成時間: 2021年3月2日 11:28:57
+7             タスク:     データのインポートウィザード
+8          
+9             ソースファイル: C:\Users\user\Documents\DataScientist\PortFolio\Netflix
+10            etflix_titles.csv
+11            サーバー:      ローカルファイルシステム
+12         
+13            出力データ: WORK.netflix_titles
+14            サーバー:      Local
+15            -------------------------------------------------------------------- */
+16         
+17         DATA WORK.netflix_titles;
+18             LENGTH
+19                 show_id            8
+20                 type             $ 7
+21                 title            $ 104
+22                 director         $ 208
+23                 cast             $ 771
+24                 country          $ 123
+25                 date_added       $ 28
+26                 release_year     $ 51
+27                 rating           $ 29
+28                 duration         $ 54
+29                 listed_in        $ 151
+30                 description      $ 250
+31                 F13              $ 18
+32                 F14              $ 51
+33                 F15              $ 133
+34                 F16              $ 134
+35                 F17              $ 35
+36                 F18              $ 142
+37                 F19              $ 151
+38                 F20              $ 145
+39                 F21              $ 120
+40                 F22              $ 17
+41                 F23              $ 4
+42                 F24              $ 7
+43                 F25              $ 28
+44                 F26              $ 148
+45                 F27              $ 151 ;
+46             FORMAT
+47                 show_id          BEST8.
+48                 type             $CHAR7.
+49                 title            $CHAR104.
+50                 director         $CHAR208.
+51                 cast             $CHAR771.
+52                 country          $CHAR123.
+53                 date_added       $CHAR28.
+54                 release_year     $CHAR51.
+55                 rating           $CHAR29.
+56                 duration         $CHAR54.
+57                 listed_in        $CHAR151.
+58                 description      $CHAR250.
+59                 F13              $CHAR18.
+60                 F14              $CHAR51.
+61                 F15              $CHAR133.
+62                 F16              $CHAR134.
+63                 F17              $CHAR35.
+64                 F18              $CHAR142.
+65                 F19              $CHAR151.
+66                 F20              $CHAR145.
+67                 F21              $CHAR120.
+68                 F22              $CHAR17.
+69                 F23              $CHAR4.
+70                 F24              $CHAR7.
+71                 F25              $CHAR28.
+72                 F26              $CHAR148.
+73                 F27              $CHAR151. ;
+74             INFORMAT
+75                 show_id          BEST8.
+76                 type             $CHAR7.
+77                 title            $CHAR104.
+78                 director         $CHAR208.
+79                 cast             $CHAR771.
+80                 country          $CHAR123.
+81                 date_added       $CHAR28.
+82                 release_year     $CHAR51.
+83                 rating           $CHAR29.
+84                 duration         $CHAR54.
+85                 listed_in        $CHAR151.
+86                 description      $CHAR250.
+87                 F13              $CHAR18.
+88                 F14              $CHAR51.
+89                 F15              $CHAR133.
+90                 F16              $CHAR134.
+91                 F17              $CHAR35.
+92                 F18              $CHAR142.
+93                 F19              $CHAR151.
+94                 F20              $CHAR145.
+95                 F21              $CHAR120.
+96                 F22              $CHAR17.
+97                 F23              $CHAR4.
+98                 F24              $CHAR7.
+99                 F25              $CHAR28.
+100                F26              $CHAR148.
+101                F27              $CHAR151. ;
+102            INFILE 'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-6263719722c340bd8686f519176b89cd.txt'
+103                LRECL=1045
+104                ENCODING="SHIFT-JIS"
+105                TERMSTR=CRLF
+106                DLM='7F'x
+107                MISSOVER
+108                DSD ;
+109            INPUT
+110                show_id          : ?? BEST8.
+111                type             : $CHAR7.
+112                title            : $CHAR104.
+113                director         : $CHAR208.
+114                cast             : $CHAR771.
+115                country          : $CHAR123.
+116                date_added       : $CHAR28.
+117                release_year     : $CHAR51.
+118                rating           : $CHAR29.
+119                duration         : $CHAR54.
+120                listed_in        : $CHAR151.
+121                description      : $CHAR250.
+122                F13              : $CHAR18.
+123                F14              : $CHAR51.
+124                F15              : $CHAR133.
+125                F16              : $CHAR134.
+126                F17              : $CHAR35.
+127                F18              : $CHAR142.
+128                F19              : $CHAR151.
+129                F20              : $CHAR145.
+130                F21              : $CHAR120.
+131                F22              : $CHAR17.
+132                F23              : $CHAR4.
+133                F24              : $CHAR7.
+134                F25              : $CHAR28.
+135                F26              : $CHAR148.
+136                F27              : $CHAR151. ;
+137        RUN;
+
+NOTE: 入力ファイル'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-6263719722c340bd8686f519176b89cd.txt' :
+      ファイル名=C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-6263719722c340bd8686f519176b89cd.txt,
+      レコードフォーマット=V,論理レコード長=2090,
+      ファイルサイズ (バイト)=2370000,
+      更新日時=2021年03月02日 11時28分57秒,
+      作成日時=2021年03月02日 11時28分57秒
+
+NOTE: 6231レコードを入力ファイル'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-6263719722c340bd8686f519176b89cd.txt'から読み
+      込みました。
+      最小レコード長は207です。
+      最大レコード長は1045です。
+NOTE: データセットWORK.NETFLIX_TITLESは6231オブザベーション、27変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.06 秒
+      CPU時間            0.04 秒
+      
+
+138        
+139        QUIT; RUN;
+140        
+"02_データ加工_ポートフォリオ__egp" の実行ログ(時間: 2021/03/02 11:29:01、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET SYSLAST=WORK.NETFLIX_TITLES;
+4          %LET _CLIENTTASKLABEL='02_データ加工_ポートフォリオ__egp';
+5          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+6          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+7          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+8          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+9          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\02_データ加工_ポートフォリオ__egp.sas';
+10         %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+11         
+12         ODS _ALL_ CLOSE;
+13         OPTIONS DEV=PNG;
+14         GOPTIONS XPIXELS=0 YPIXELS=0;
+15         FILENAME EGSR TEMP;
+16         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+17             STYLE=HtmlBlue
+18             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+19             NOGTITLE
+20             NOGFOOTNOTE
+21             GPATH=&sasworklocation
+22             ENCODING=UTF8
+23             options(rolap="on")
+24         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+25         
+26         GOPTIONS ACCESSIBLE;
+27         data Netflix_remake;
+28         	set WORK.NETFLIX_TITLES;
+29         	attrib rating_ length=$4;
+30         	attrib type_   length=$10 format=MovieType.;
+31         	attrib duration_hour format=8.2;
+32         
+33         	/*--- type加工 ---*/
+34         	/* Movie   1 */
+35         	/* TV Show 2 */
+36         	select(type);
+37         		when ('Movie')   type_ = '1';
+38         		when ('TV Show') type_ = '2';
+39         		otherwise type_ = '';
+40         	end;
+41         
+42         	/*--- rating加工 ---*/
+43         	/*G,NR,PG,TV-G,TV-PG	all */
+44         	/*TV-Y	                2 - */
+45         	/*TV-Y7,TV-Y7-FV        7 - */
+46         	/*PG-13	                13 -*/
+47         	/*TV-14	                14 -*/	
+48         	/*NC-17	                17 -*/	
+49         	/*R	                    18 -*/	
+50         	/*TV-MA,UR	            20 -*/	
+51         	select ;
+52         		when (rating in ('G','NR','PG','TV-G','TV-PG')) rating_ = 'all';
+53         		when (rating = 'NC-17') rating_ = '17 -';
+54         		when (rating = 'PG-13') rating_ = '13 -';
+55         		when (rating = 'R')     rating_ = '18 -';
+56         		when (rating = 'TV-14') rating_ = '14 -';
+57         		when (rating = 'TV-MA') rating_ = '20 -';
+58         		when (rating = 'TV-Y')  rating_ = '2 -';
+59         		when (rating in ('TV-Y7','TV-Y7-FV')) rating_ = '7 -';
+60         		when (rating = 'UR')    rating_ = '20 -';
+61         		otherwise rating_ = 'all';
+62         	end;
+63         
+64         	/*--- duration加工 ---*/
+65         	/* 1Season → 22話 × 30min */
+66         	if compress(index(duration,'min')) > 0
+67         		then duration_min = input(substr(duration,1,input(compress(index(duration,'min')),10.)-1),10.);
+68         	else if compress(index(duration,'Season')) > 0
+69         		then duration_min = input(substr(duration,1,input(compress(index(duration,'Season')),10.)-1),10.) * 22 * 30;
+70         	else duration_min = 0;
+71         	/* min → hour */
+72         	duration_hour = duration_min / 60;
+73         
+74         	/*--- release_year加工 ---*/
+75         	select(substr(release_year,1,2));
+76         		when ('19') ;
+77         		when ('20') ;
+78         		otherwise release_year = '';
+79         	end;
+80         run;
+
+NOTE: 以下の箇所で数値を文字値に変換しました。(行:カラム)
+      66:14   67:62   68:19   69:62   
+NOTE: 以下の箇所で文字値を数値に変換しました。(行:カラム)
+      66:5    68:10   
+NOTE: データセットWORK.NETFLIX_TITLESから6231オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_REMAKEは6231オブザベーション、31変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.09 秒
+      CPU時間            0.09 秒
+      
+
+81         
+82         GOPTIONS NOACCESSIBLE;
+83         %LET _CLIENTTASKLABEL=;
+84         %LET _CLIENTPROCESSFLOWNAME=;
+85         %LET _CLIENTPROJECTPATH=;
+86         %LET _CLIENTPROJECTPATHHOST=;
+87         %LET _CLIENTPROJECTNAME=;
+88         %LET _SASPROGRAMFILE=;
+89         %LET _SASPROGRAMFILEHOST=;
+90         
+91         ;*';*";*/;quit;run;
+92         ODS _ALL_ CLOSE;
+93         
+94         
+95         QUIT; RUN;
+96         
+"03_集計" の実行ログ(時間: 2021/03/02 11:29:03、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='03_集計';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\03_集計.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /*--- レーティングと映像タイプ（テレビ番組、映画）の集計 ---*/
+27         proc freq data=NETFLIX_REMAKE ;
+28         	table rating_ * type_ / nopercent norow nocol out=NETFLIX_freq noprint;
+29         run;
+
+NOTE: データセットWORK.NETFLIX_REMAKEから6231オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_FREQは14オブザベーション、4変数です。
+NOTE: PROCEDURE FREQ処理(合計処理時間):
+      処理時間           0.12 秒
+      CPU時間            0.09 秒
+      
+
+30         
+31         /*--- 帳票作成 ---*/
+32         /* 転置 */
+33         proc transpose data=work.netflix_freq out=work.netflix_tran(drop=_NAME_ _LABEL_);
+34         	var COUNT;
+35         	by  rating_;
+36         	id  type_;
+37         run;
+
+NOTE: データセットWORK.NETFLIX_FREQから14オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_TRANは8オブザベーション、3変数です。
+NOTE: PROCEDURE TRANSPOSE処理(合計処理時間):
+      処理時間           0.04 秒
+      CPU時間            0.03 秒
+      
+
+38         /* 欠損値処理 */
+39         data work.netflix_tran;
+40         	length rating_ $9.;
+41         	length Movie_ 'tv show_'n $10.;
+42         	set work.netflix_tran;
+43         	if Movie      = . then Movie      = 0;
+44         	if 'tv show'n = . then 'tv show'n = 0;
+45         	Movie_      = compress(put(Movie,5.));
+46         	'tv show_'n = compress(put('tv show'n,5.));
+47         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_TRANは8オブザベーション、5変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.04 秒
+      CPU時間            0.04 秒
+      
+
+48         
+49         GOPTIONS NOACCESSIBLE;
+50         %LET _CLIENTTASKLABEL=;
+51         %LET _CLIENTPROCESSFLOWNAME=;
+52         %LET _CLIENTPROJECTPATH=;
+53         %LET _CLIENTPROJECTPATHHOST=;
+54         %LET _CLIENTPROJECTNAME=;
+55         %LET _SASPROGRAMFILE=;
+56         %LET _SASPROGRAMFILEHOST=;
+57         
+58         ;*';*";*/;quit;run;
+59         ODS _ALL_ CLOSE;
+60         
+61         
+62         QUIT; RUN;
+63         
+"04_分析" の実行ログ(時間: 2021/03/02 11:29:05、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='04_分析';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\04_分析.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /*--- 映像タイプ毎の継続時間（h）の分析 ---*/
+27         proc univariate data=NETFLIX_REMAKE noprint;
+28         	var duration_hour;
+29         	output out=NETFLIX_univari min=MIN_dur max=MAX_dur mean=MEAN_dur;
+30         	class type_;
+31         run;
+
+NOTE: データセットWORK.NETFLIX_UNIVARIは2オブザベーション、4変数です。
+NOTE: PROCEDURE UNIVARIATE処理(合計処理時間):
+      処理時間           0.06 秒
+      CPU時間            0.04 秒
+      
+
+32         
+33         /* 最大値と最小値加工 */
+34         data NETFLIX_MIN_MAX(keep=type_ MEAN_dur_ min_max);
+35         	set NETFLIX_univari;
+36         	attrib min_max   length=$10;
+37         	attrib MEAN_dur_ length=$8;
+38         	min_max = compress(put(MIN_dur,2.)) || ' - ' || compress(put(MAX_dur,5.));
+39         	MEAN_dur_ = compress(put(MEAN_dur,8.2));
+40         run;
+
+NOTE: データセットWORK.NETFLIX_UNIVARIから2オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_MIN_MAXは2オブザベーション、3変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.04 秒
+      CPU時間            0.01 秒
+      
+
+41         
+42         /*--- 帳票作成 ---*/
+43         proc transpose data=NETFLIX_MIN_MAX out=NETFLIX_DUR_TRAN;
+44         	var MEAN_dur_ min_max;
+45         	id type_;
+46         run;
+
+NOTE: データセットWORK.NETFLIX_MIN_MAXから2オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_DUR_TRANは2オブザベーション、3変数です。
+NOTE: PROCEDURE TRANSPOSE処理(合計処理時間):
+      処理時間           0.04 秒
+      CPU時間            0.04 秒
+      
+
+47         
+48         GOPTIONS NOACCESSIBLE;
+49         %LET _CLIENTTASKLABEL=;
+50         %LET _CLIENTPROCESSFLOWNAME=;
+51         %LET _CLIENTPROJECTPATH=;
+52         %LET _CLIENTPROJECTPATHHOST=;
+53         %LET _CLIENTPROJECTNAME=;
+54         %LET _SASPROGRAMFILE=;
+55         %LET _SASPROGRAMFILEHOST=;
+56         
+57         ;*';*";*/;quit;run;
+58         ODS _ALL_ CLOSE;
+59         
+60         
+61         QUIT; RUN;
+62         
+"05_グラフ描画" の実行ログ(時間: 2021/03/02 11:29:08、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='05_グラフ描画';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\05_グラフ描画.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /* 文字スタイルを変更 */
+27         proc template;
+28         	define style styles.htmlblue2;
+29         	parent=styles.htmlblue;
+30         	class GraphFonts /
+31         	  'NodeDetailFont' = ("&gfont",7pt)
+32         	  'NodeInputLabelFont' = ("&gfont",9pt)
+33         	  'NodeLabelFont' = ("&gfont",9pt)
+34         	  'NodeTitleFont' = ("&gfont",9pt)
+35         	  'GraphDataFont' = ("&gfont",7pt)
+36         	  'GraphUnicodeFont' = ("&gfont",9pt)
+37         	  'GraphValueFont' = ("&gfont",9pt)
+38         	  'GraphLabel2Font' = ("&gfont",10pt)
+39         	  'GraphLabelFont' = ("&gfont",10pt)
+40         	  'GraphFootnoteFont' = ("&gfont",10pt)
+41         	  'GraphTitleFont' = ("&gfont",11pt,bold)
+42         	  'GraphTitle1Font' = ("&gfont",14pt,bold)
+43         	  'GraphAnnoFont' = ("&gfont",10pt);
+44         	end;
+NOTE: 既存のテンプレート/リンクStyles.Htmlblue2を上書きします。
+NOTE: STYLE 'Styles.Htmlblue2'をSASUSER.TEMPLATに保存しました。
+45         run;
+NOTE: PROCEDURE TEMPLATE処理(合計処理時間):
+      処理時間           0.01 秒
+      CPU時間            0.00 秒
+      
+
+46         filename graph "&outpath.\gragh.htm" ;
+47         ods html style=htmlblue2 path="&outpath." file='graph.html' ;
+NOTE: HTML Bodyファイルの書き込み先: graph.html
+48         
+49         /* 折れ線グラフ作成 */
+50         ods listing gpath="C:\Users\user\Documents\DataScientist\PortFolio\Netflix" style=htmlblue2;
+51         axis2 label=(font=mincho h=1.5 ANGLE=-90 ROTATE=90 '性別');
+52         proc sgplot data= work.netflix_tran;
+53         	vline rating_/response=Movie;
+54         	vline rating_/response='tv show'n;
+55         run;
+
+NOTE: PROCEDURE SGPLOT処理(合計処理時間):
+      処理時間           0.73 秒
+      CPU時間            0.42 秒
+      
+NOTE: C:\Users\user\Documents\DataScientist\PortFolio\Netflix\SGPlot9.pngに書き込まれたイメージ出力を一覧表示します。
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+
+56         
+57         GOPTIONS NOACCESSIBLE;
+58         %LET _CLIENTTASKLABEL=;
+59         %LET _CLIENTPROCESSFLOWNAME=;
+60         %LET _CLIENTPROJECTPATH=;
+61         %LET _CLIENTPROJECTPATHHOST=;
+62         %LET _CLIENTPROJECTNAME=;
+63         %LET _SASPROGRAMFILE=;
+64         %LET _SASPROGRAMFILEHOST=;
+65         
+66         ;*';*";*/;quit;run;
+67         ODS _ALL_ CLOSE;
+68         
+69         
+70         QUIT; RUN;
+71         
+"06_帳票作成" の実行ログ(時間: 2021/03/02 11:29:11、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='06_帳票作成';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\06_帳票作成.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /*--- データ縦積み ---*/
+27         data table1;
+28         	set NETFLIX_TRAN(drop=Movie 'TV show'n rename=(rating_ = _NAME_)) NETFLIX_DUR_TRAN(rename=(Movie=Movie_ 'TV Show'n='TV
+28       ! Show_'n));
+29         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_DUR_TRANから2オブザベーションを読み込みました。
+NOTE: データセットWORK.TABLE1は10オブザベーション、3変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.05 秒
+      CPU時間            0.04 秒
+      
+
+30         
+31         /*--- ワードに出力 ---*/
+32         ods rtf file = "&outpath.\nexflix.rtf" style=Styles.Default  ;
+NOTE: RTF Bodyファイルの書き込み先: C:\Users\user\Documents\DataScientist\PortFolio\Netflix\output\nexflix.rtf
+33         proc report data=work.netflix_tran missing
+34         	style(column) = {asis=off background=white vjust=center};
+35         	column rating_ ('ムービータイプ' Movie 'tv show'n);
+36         	define rating_ / 'レート' order;
+37         	define Movie   / '映画';
+38         	define 'tv show'n   / 'テレビ番組';
+39         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: PROCEDURE REPORT処理(合計処理時間):
+      処理時間           0.03 秒
+      CPU時間            0.04 秒
+      
+
+40         ods rtf close;
+41         
+42         GOPTIONS NOACCESSIBLE;
+43         %LET _CLIENTTASKLABEL=;
+44         %LET _CLIENTPROCESSFLOWNAME=;
+45         %LET _CLIENTPROJECTPATH=;
+46         %LET _CLIENTPROJECTPATHHOST=;
+47         %LET _CLIENTPROJECTNAME=;
+48         %LET _SASPROGRAMFILE=;
+49         %LET _SASPROGRAMFILEHOST=;
+50         
+51         ;*';*";*/;quit;run;
+52         ODS _ALL_ CLOSE;
+53         
+54         
+55         QUIT; RUN;
+56         
+"01_初期読み込み" の実行ログ(時間: 2021/03/02 11:31:16、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET _CLIENTTASKLABEL='01_初期読み込み';
+4          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+5          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+6          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+7          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+8          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\01_初期読み込み.sas';
+9          %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+10         
+11         ODS _ALL_ CLOSE;
+12         OPTIONS DEV=PNG;
+13         GOPTIONS XPIXELS=0 YPIXELS=0;
+14         FILENAME EGSR TEMP;
+15         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+16             STYLE=HtmlBlue
+17             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+18             NOGTITLE
+19             NOGFOOTNOTE
+20             GPATH=&sasworklocation
+21             ENCODING=UTF8
+22             options(rolap="on")
+23         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+24         
+25         GOPTIONS ACCESSIBLE;
+26         /* プログラム初期化 */
+27         /* 出力PATH */
+28         %let outpath = C:\Users\user\Documents\DataScientist\PortFolio\Netflix\output;
+29         %let gfont=Arial Unicode MS;
+30         
+31         /* フォーマット定義 */
+32         proc format;
+33         	
+33       !  value $MovieType
+34         		'1' = 'Movie'
+35         		'2' = 'TV Show'
+36         	;
+NOTE: 出力形式$MOVIETYPEはすでにライブラリWORK.FORMATSに存在します。
+NOTE: 出力形式$MOVIETYPEを作成しました。
+37         run;
+
+NOTE: PROCEDURE FORMAT処理(合計処理時間):
+      処理時間           0.00 秒
+      CPU時間            0.00 秒
+      
+
+38         
+39         
+40         
+41         GOPTIONS NOACCESSIBLE;
+42         %LET _CLIENTTASKLABEL=;
+43         %LET _CLIENTPROCESSFLOWNAME=;
+44         %LET _CLIENTPROJECTPATH=;
+45         %LET _CLIENTPROJECTPATHHOST=;
+46         %LET _CLIENTPROJECTNAME=;
+47         %LET _SASPROGRAMFILE=;
+48         %LET _SASPROGRAMFILEHOST=;
+49         
+50         ;*';*";*/;quit;run;
+51         ODS _ALL_ CLOSE;
+52         
+53         
+54         QUIT; RUN;
+55         
+"データ (netflix_titles.csv) のインポート" の実行ログ(時間: 2021/03/02 11:31:18、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          /* --------------------------------------------------------------------
+4             SAS タスクによる生成コード
+5          
+6             生成時間: 2021年3月2日 11:31:17
+7             タスク:     データのインポートウィザード
+8          
+9             ソースファイル: C:\Users\user\Documents\DataScientist\PortFolio\Netflix
+10            etflix_titles.csv
+11            サーバー:      ローカルファイルシステム
+12         
+13            出力データ: WORK.netflix_titles
+14            サーバー:      Local
+15            -------------------------------------------------------------------- */
+16         
+17         DATA WORK.netflix_titles;
+18             LENGTH
+19                 show_id            8
+20                 type             $ 7
+21                 title            $ 104
+22                 director         $ 208
+23                 cast             $ 771
+24                 country          $ 123
+25                 date_added       $ 28
+26                 release_year     $ 51
+27                 rating           $ 29
+28                 duration         $ 54
+29                 listed_in        $ 151
+30                 description      $ 250
+31                 F13              $ 18
+32                 F14              $ 51
+33                 F15              $ 133
+34                 F16              $ 134
+35                 F17              $ 35
+36                 F18              $ 142
+37                 F19              $ 151
+38                 F20              $ 145
+39                 F21              $ 120
+40                 F22              $ 17
+41                 F23              $ 4
+42                 F24              $ 7
+43                 F25              $ 28
+44                 F26              $ 148
+45                 F27              $ 151 ;
+46             FORMAT
+47                 show_id          BEST8.
+48                 type             $CHAR7.
+49                 title            $CHAR104.
+50                 director         $CHAR208.
+51                 cast             $CHAR771.
+52                 country          $CHAR123.
+53                 date_added       $CHAR28.
+54                 release_year     $CHAR51.
+55                 rating           $CHAR29.
+56                 duration         $CHAR54.
+57                 listed_in        $CHAR151.
+58                 description      $CHAR250.
+59                 F13              $CHAR18.
+60                 F14              $CHAR51.
+61                 F15              $CHAR133.
+62                 F16              $CHAR134.
+63                 F17              $CHAR35.
+64                 F18              $CHAR142.
+65                 F19              $CHAR151.
+66                 F20              $CHAR145.
+67                 F21              $CHAR120.
+68                 F22              $CHAR17.
+69                 F23              $CHAR4.
+70                 F24              $CHAR7.
+71                 F25              $CHAR28.
+72                 F26              $CHAR148.
+73                 F27              $CHAR151. ;
+74             INFORMAT
+75                 show_id          BEST8.
+76                 type             $CHAR7.
+77                 title            $CHAR104.
+78                 director         $CHAR208.
+79                 cast             $CHAR771.
+80                 country          $CHAR123.
+81                 date_added       $CHAR28.
+82                 release_year     $CHAR51.
+83                 rating           $CHAR29.
+84                 duration         $CHAR54.
+85                 listed_in        $CHAR151.
+86                 description      $CHAR250.
+87                 F13              $CHAR18.
+88                 F14              $CHAR51.
+89                 F15              $CHAR133.
+90                 F16              $CHAR134.
+91                 F17              $CHAR35.
+92                 F18              $CHAR142.
+93                 F19              $CHAR151.
+94                 F20              $CHAR145.
+95                 F21              $CHAR120.
+96                 F22              $CHAR17.
+97                 F23              $CHAR4.
+98                 F24              $CHAR7.
+99                 F25              $CHAR28.
+100                F26              $CHAR148.
+101                F27              $CHAR151. ;
+102            INFILE 'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-d8adc7e723674739852deadb5f19ec7a.txt'
+103                LRECL=1045
+104                ENCODING="SHIFT-JIS"
+105                TERMSTR=CRLF
+106                DLM='7F'x
+107                MISSOVER
+108                DSD ;
+109            INPUT
+110                show_id          : ?? BEST8.
+111                type             : $CHAR7.
+112                title            : $CHAR104.
+113                director         : $CHAR208.
+114                cast             : $CHAR771.
+115                country          : $CHAR123.
+116                date_added       : $CHAR28.
+117                release_year     : $CHAR51.
+118                rating           : $CHAR29.
+119                duration         : $CHAR54.
+120                listed_in        : $CHAR151.
+121                description      : $CHAR250.
+122                F13              : $CHAR18.
+123                F14              : $CHAR51.
+124                F15              : $CHAR133.
+125                F16              : $CHAR134.
+126                F17              : $CHAR35.
+127                F18              : $CHAR142.
+128                F19              : $CHAR151.
+129                F20              : $CHAR145.
+130                F21              : $CHAR120.
+131                F22              : $CHAR17.
+132                F23              : $CHAR4.
+133                F24              : $CHAR7.
+134                F25              : $CHAR28.
+135                F26              : $CHAR148.
+136                F27              : $CHAR151. ;
+137        RUN;
+
+NOTE: 入力ファイル'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-d8adc7e723674739852deadb5f19ec7a.txt' :
+      ファイル名=C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-d8adc7e723674739852deadb5f19ec7a.txt,
+      レコードフォーマット=V,論理レコード長=2090,
+      ファイルサイズ (バイト)=2370000,
+      更新日時=2021年03月02日 11時31分17秒,
+      作成日時=2021年03月02日 11時31分17秒
+
+NOTE: 6231レコードを入力ファイル'C:\Users\user\AppData\Local\Temp\SEG904\netflix_titles-d8adc7e723674739852deadb5f19ec7a.txt'から読み
+      込みました。
+      最小レコード長は207です。
+      最大レコード長は1045です。
+NOTE: データセットWORK.NETFLIX_TITLESは6231オブザベーション、27変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.06 秒
+      CPU時間            0.06 秒
+      
+
+138        
+139        QUIT; RUN;
+140        
+"02_データ加工_ポートフォリオ__egp" の実行ログ(時間: 2021/03/02 11:31:21、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET SYSLAST=WORK.NETFLIX_TITLES;
+4          %LET _CLIENTTASKLABEL='02_データ加工_ポートフォリオ__egp';
+5          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+6          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+7          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+8          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+9          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\02_データ加工_ポートフォリオ__egp.sas';
+10         %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+11         
+12         ODS _ALL_ CLOSE;
+13         OPTIONS DEV=PNG;
+14         GOPTIONS XPIXELS=0 YPIXELS=0;
+15         FILENAME EGSR TEMP;
+16         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+17             STYLE=HtmlBlue
+18             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+19             NOGTITLE
+20             NOGFOOTNOTE
+21             GPATH=&sasworklocation
+22             ENCODING=UTF8
+23             options(rolap="on")
+24         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+25         
+26         GOPTIONS ACCESSIBLE;
+27         data Netflix_remake;
+28         	set WORK.NETFLIX_TITLES;
+29         	attrib rating_ length=$4;
+30         	attrib type_   length=$10 format=MovieType.;
+31         	attrib duration_hour format=8.2;
+32         
+33         	/*--- type加工 ---*/
+34         	/* Movie   1 */
+35         	/* TV Show 2 */
+36         	select(type);
+37         		when ('Movie')   type_ = '1';
+38         		when ('TV Show') type_ = '2';
+39         		otherwise type_ = '';
+40         	end;
+41         
+42         	/*--- rating加工 ---*/
+43         	/*G,NR,PG,TV-G,TV-PG	all */
+44         	/*TV-Y	                2 - */
+45         	/*TV-Y7,TV-Y7-FV        7 - */
+46         	/*PG-13	                13 -*/
+47         	/*TV-14	                14 -*/	
+48         	/*NC-17	                17 -*/	
+49         	/*R	                    18 -*/	
+50         	/*TV-MA,UR	            20 -*/	
+51         	select ;
+52         		when (rating in ('G','NR','PG','TV-G','TV-PG')) rating_ = 'all';
+53         		when (rating = 'NC-17') rating_ = '17 -';
+54         		when (rating = 'PG-13') rating_ = '13 -';
+55         		when (rating = 'R')     rating_ = '18 -';
+56         		when (rating = 'TV-14') rating_ = '14 -';
+57         		when (rating = 'TV-MA') rating_ = '20 -';
+58         		when (rating = 'TV-Y')  rating_ = '2 -';
+59         		when (rating in ('TV-Y7','TV-Y7-FV')) rating_ = '7 -';
+60         		when (rating = 'UR')    rating_ = '20 -';
+61         		otherwise rating_ = 'all';
+62         	end;
+63         
+64         	/*--- duration加工 ---*/
+65         	/* 1Season → 22話 × 30min */
+66         	if compress(index(duration,'min')) > 0
+67         		then duration_min = input(substr(duration,1,input(compress(index(duration,'min')),10.)-1),10.);
+68         	else if compress(index(duration,'Season')) > 0
+69         		then duration_min = input(substr(duration,1,input(compress(index(duration,'Season')),10.)-1),10.) * 22 * 30;
+70         	else duration_min = 0;
+71         	/* min → hour */
+72         	duration_hour = duration_min / 60;
+73         
+74         	/*--- release_year加工 ---*/
+75         	select(substr(release_year,1,2));
+76         		when ('19') ;
+77         		when ('20') ;
+78         		otherwise release_year = '';
+79         	end;
+80         run;
+
+NOTE: 以下の箇所で数値を文字値に変換しました。(行:カラム)
+      66:14   67:62   68:19   69:62   
+NOTE: 以下の箇所で文字値を数値に変換しました。(行:カラム)
+      66:5    68:10   
+NOTE: データセットWORK.NETFLIX_TITLESから6231オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_REMAKEは6231オブザベーション、31変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.11 秒
+      CPU時間            0.09 秒
+      
+
+81         
+82         GOPTIONS NOACCESSIBLE;
+83         %LET _CLIENTTASKLABEL=;
+84         %LET _CLIENTPROCESSFLOWNAME=;
+85         %LET _CLIENTPROJECTPATH=;
+86         %LET _CLIENTPROJECTPATHHOST=;
+87         %LET _CLIENTPROJECTNAME=;
+88         %LET _SASPROGRAMFILE=;
+89         %LET _SASPROGRAMFILEHOST=;
+90         
+91         ;*';*";*/;quit;run;
+92         ODS _ALL_ CLOSE;
+93         
+94         
+95         QUIT; RUN;
+96         
+"03_集計" の実行ログ(時間: 2021/03/02 11:31:24、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET SYSLAST=WORK.NETFLIX_REMAKE;
+4          %LET _CLIENTTASKLABEL='03_集計';
+5          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+6          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+7          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+8          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+9          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\03_集計.sas';
+10         %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+11         
+12         ODS _ALL_ CLOSE;
+13         OPTIONS DEV=PNG;
+14         GOPTIONS XPIXELS=0 YPIXELS=0;
+15         FILENAME EGSR TEMP;
+16         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+17             STYLE=HtmlBlue
+18             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+19             NOGTITLE
+20             NOGFOOTNOTE
+21             GPATH=&sasworklocation
+22             ENCODING=UTF8
+23             options(rolap="on")
+24         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+25         
+26         GOPTIONS ACCESSIBLE;
+27         /*--- レーティングと映像タイプ（テレビ番組、映画）の集計 ---*/
+28         proc freq data=NETFLIX_REMAKE ;
+29         	table rating_ * type_ / nopercent norow nocol out=NETFLIX_freq noprint;
+30         run;
+
+NOTE: データセットWORK.NETFLIX_REMAKEから6231オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_FREQは14オブザベーション、4変数です。
+NOTE: PROCEDURE FREQ処理(合計処理時間):
+      処理時間           0.13 秒
+      CPU時間            0.11 秒
+      
+
+31         
+32         /*--- 帳票作成 ---*/
+33         /* 転置 */
+34         proc transpose data=work.netflix_freq out=work.netflix_tran(drop=_NAME_ _LABEL_);
+35         	var COUNT;
+36         	by  rating_;
+37         	id  type_;
+38         run;
+
+NOTE: データセットWORK.NETFLIX_FREQから14オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_TRANは8オブザベーション、3変数です。
+NOTE: PROCEDURE TRANSPOSE処理(合計処理時間):
+      処理時間           0.04 秒
+      CPU時間            0.04 秒
+      
+
+39         /* 欠損値処理 */
+40         data work.netflix_tran;
+41         	length rating_ $9.;
+42         	length Movie_ 'tv show_'n $10.;
+43         	set work.netflix_tran;
+44         	if Movie      = . then Movie      = 0;
+45         	if 'tv show'n = . then 'tv show'n = 0;
+46         	Movie_      = compress(put(Movie,5.));
+47         	'tv show_'n = compress(put('tv show'n,5.));
+48         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_TRANは8オブザベーション、5変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.02 秒
+      CPU時間            0.01 秒
+      
+
+49         
+50         GOPTIONS NOACCESSIBLE;
+51         %LET _CLIENTTASKLABEL=;
+52         %LET _CLIENTPROCESSFLOWNAME=;
+53         %LET _CLIENTPROJECTPATH=;
+54         %LET _CLIENTPROJECTPATHHOST=;
+55         %LET _CLIENTPROJECTNAME=;
+56         %LET _SASPROGRAMFILE=;
+57         %LET _SASPROGRAMFILEHOST=;
+58         
+59         ;*';*";*/;quit;run;
+60         ODS _ALL_ CLOSE;
+61         
+62         
+63         QUIT; RUN;
+64         
+"04_分析" の実行ログ(時間: 2021/03/02 11:31:26、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET SYSLAST=WORK.NETFLIX_REMAKE;
+4          %LET _CLIENTTASKLABEL='04_分析';
+5          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+6          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+7          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+8          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+9          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\04_分析.sas';
+10         %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+11         
+12         ODS _ALL_ CLOSE;
+13         OPTIONS DEV=PNG;
+14         GOPTIONS XPIXELS=0 YPIXELS=0;
+15         FILENAME EGSR TEMP;
+16         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+17             STYLE=HtmlBlue
+18             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+19             NOGTITLE
+20             NOGFOOTNOTE
+21             GPATH=&sasworklocation
+22             ENCODING=UTF8
+23             options(rolap="on")
+24         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+25         
+26         GOPTIONS ACCESSIBLE;
+27         /*--- 映像タイプ毎の継続時間（h）の分析 ---*/
+28         proc univariate data=NETFLIX_REMAKE noprint;
+29         	var duration_hour;
+30         	output out=NETFLIX_univari min=MIN_dur max=MAX_dur mean=MEAN_dur;
+31         	class type_;
+32         run;
+
+NOTE: データセットWORK.NETFLIX_UNIVARIは2オブザベーション、4変数です。
+NOTE: PROCEDURE UNIVARIATE処理(合計処理時間):
+      処理時間           0.08 秒
+      CPU時間            0.06 秒
+      
+
+33         
+34         /* 最大値と最小値加工 */
+35         data NETFLIX_MIN_MAX(keep=type_ MEAN_dur_ min_max);
+36         	set NETFLIX_univari;
+37         	attrib min_max   length=$10;
+38         	attrib MEAN_dur_ length=$8;
+39         	min_max = compress(put(MIN_dur,2.)) || ' - ' || compress(put(MAX_dur,5.));
+40         	MEAN_dur_ = compress(put(MEAN_dur,8.2));
+41         run;
+
+NOTE: データセットWORK.NETFLIX_UNIVARIから2オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_MIN_MAXは2オブザベーション、3変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.05 秒
+      CPU時間            0.04 秒
+      
+
+42         
+43         /*--- 帳票作成 ---*/
+44         proc transpose data=NETFLIX_MIN_MAX out=NETFLIX_DUR_TRAN;
+45         	var MEAN_dur_ min_max;
+46         	id type_;
+47         run;
+
+NOTE: データセットWORK.NETFLIX_MIN_MAXから2オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_DUR_TRANは2オブザベーション、3変数です。
+NOTE: PROCEDURE TRANSPOSE処理(合計処理時間):
+      処理時間           0.04 秒
+      CPU時間            0.04 秒
+      
+
+48         
+49         GOPTIONS NOACCESSIBLE;
+50         %LET _CLIENTTASKLABEL=;
+51         %LET _CLIENTPROCESSFLOWNAME=;
+52         %LET _CLIENTPROJECTPATH=;
+53         %LET _CLIENTPROJECTPATHHOST=;
+54         %LET _CLIENTPROJECTNAME=;
+55         %LET _SASPROGRAMFILE=;
+56         %LET _SASPROGRAMFILEHOST=;
+57         
+58         ;*';*";*/;quit;run;
+59         ODS _ALL_ CLOSE;
+60         
+61         
+62         QUIT; RUN;
+63         
+"06_帳票作成" の実行ログ(時間: 2021/03/02 11:31:29、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET SYSLAST=WORK.NETFLIX_TRAN;
+4          %LET _CLIENTTASKLABEL='06_帳票作成';
+5          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+6          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+7          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+8          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+9          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\06_帳票作成.sas';
+10         %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+11         
+12         ODS _ALL_ CLOSE;
+13         OPTIONS DEV=PNG;
+14         GOPTIONS XPIXELS=0 YPIXELS=0;
+15         FILENAME EGSR TEMP;
+16         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+17             STYLE=HtmlBlue
+18             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+19             NOGTITLE
+20             NOGFOOTNOTE
+21             GPATH=&sasworklocation
+22             ENCODING=UTF8
+23             options(rolap="on")
+24         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+25         
+26         GOPTIONS ACCESSIBLE;
+27         /*--- データ縦積み ---*/
+28         data table1;
+29         	set NETFLIX_TRAN(drop=Movie 'TV show'n rename=(rating_ = _NAME_)) NETFLIX_DUR_TRAN(rename=(Movie=Movie_ 'TV Show'n='TV
+29       ! Show_'n));
+30         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: データセットWORK.NETFLIX_DUR_TRANから2オブザベーションを読み込みました。
+NOTE: データセットWORK.TABLE1は10オブザベーション、3変数です。
+NOTE: DATAステートメント処理(合計処理時間):
+      処理時間           0.05 秒
+      CPU時間            0.04 秒
+      
+
+31         
+32         /*--- ワードに出力 ---*/
+33         ods rtf file = "&outpath.\nexflix.rtf" style=Styles.Default  ;
+NOTE: RTF Bodyファイルの書き込み先: C:\Users\user\Documents\DataScientist\PortFolio\Netflix\output\nexflix.rtf
+34         proc report data=work.netflix_tran missing
+35         	style(column) = {asis=off background=white vjust=center};
+36         	column rating_ ('ムービータイプ' Movie 'tv show'n);
+37         	define rating_ / 'レート' order;
+38         	define Movie   / '映画';
+39         	define 'tv show'n   / 'テレビ番組';
+40         run;
+
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+NOTE: PROCEDURE REPORT処理(合計処理時間):
+      処理時間           0.05 秒
+      CPU時間            0.06 秒
+      
+
+41         ods rtf close;
+42         
+43         GOPTIONS NOACCESSIBLE;
+44         %LET _CLIENTTASKLABEL=;
+45         %LET _CLIENTPROCESSFLOWNAME=;
+46         %LET _CLIENTPROJECTPATH=;
+47         %LET _CLIENTPROJECTPATHHOST=;
+48         %LET _CLIENTPROJECTNAME=;
+49         %LET _SASPROGRAMFILE=;
+50         %LET _SASPROGRAMFILEHOST=;
+51         
+52         ;*';*";*/;quit;run;
+53         ODS _ALL_ CLOSE;
+54         
+55         
+56         QUIT; RUN;
+57         
+"05_グラフ描画" の実行ログ(時間: 2021/03/02 11:31:31、場所: Local)
+1          ;*';*";*/;quit;run;
+2          OPTIONS PAGENO=MIN;
+3          %LET SYSLAST=WORK.NETFLIX_TRAN;
+4          %LET _CLIENTTASKLABEL='05_グラフ描画';
+5          %LET _CLIENTPROCESSFLOWNAME='データ加工';
+6          %LET _CLIENTPROJECTPATH='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\データ加工_ポートフォリオ.egp';
+7          %LET _CLIENTPROJECTPATHHOST='DESKTOP-TUD6FAV';
+8          %LET _CLIENTPROJECTNAME='データ加工_ポートフォリオ.egp';
+9          %LET _SASPROGRAMFILE='C:\Users\user\Documents\DataScientist\PortFolio\Netflix\05_グラフ描画.sas';
+10         %LET _SASPROGRAMFILEHOST='DESKTOP-TUD6FAV';
+11         
+12         ODS _ALL_ CLOSE;
+13         OPTIONS DEV=PNG;
+14         GOPTIONS XPIXELS=0 YPIXELS=0;
+15         FILENAME EGSR TEMP;
+16         ODS tagsets.sasreport13(ID=EGSR) FILE=EGSR
+17             STYLE=HtmlBlue
+18             STYLESHEET=(URL="file:///C:/Program%20Files/SASHome/SASEnterpriseGuide/7.1/Styles/HtmlBlue.css")
+19             NOGTITLE
+20             NOGFOOTNOTE
+21             GPATH=&sasworklocation
+22             ENCODING=UTF8
+23             options(rolap="on")
+24         ;
+NOTE: TAGSETS.SASREPORT13(EGSR) Bodyファイルの書き込み先: EGSR
+25         
+26         GOPTIONS ACCESSIBLE;
+27         /* 文字スタイルを変更 */
+28         proc template;
+29         	define style styles.htmlblue2;
+30         	parent=styles.htmlblue;
+31         	class GraphFonts /
+32         	  'NodeDetailFont' = ("&gfont",7pt)
+33         	  'NodeInputLabelFont' = ("&gfont",9pt)
+34         	  'NodeLabelFont' = ("&gfont",9pt)
+35         	  'NodeTitleFont' = ("&gfont",9pt)
+36         	  'GraphDataFont' = ("&gfont",7pt)
+37         	  'GraphUnicodeFont' = ("&gfont",9pt)
+38         	  'GraphValueFont' = ("&gfont",9pt)
+39         	  'GraphLabel2Font' = ("&gfont",10pt)
+40         	  'GraphLabelFont' = ("&gfont",10pt)
+41         	  'GraphFootnoteFont' = ("&gfont",10pt)
+42         	  'GraphTitleFont' = ("&gfont",11pt,bold)
+43         	  'GraphTitle1Font' = ("&gfont",14pt,bold)
+44         	  'GraphAnnoFont' = ("&gfont",10pt);
+45         	end;
+NOTE: 既存のテンプレート/リンクStyles.Htmlblue2を上書きします。
+NOTE: STYLE 'Styles.Htmlblue2'をSASUSER.TEMPLATに保存しました。
+46         run;
+NOTE: PROCEDURE TEMPLATE処理(合計処理時間):
+      処理時間           0.01 秒
+      CPU時間            0.01 秒
+      
+
+47         filename graph "&outpath.\gragh.htm" ;
+48         ods html style=htmlblue2 path="&outpath." file='graph.html' ;
+NOTE: HTML Bodyファイルの書き込み先: graph.html
+49         
+50         /* 折れ線グラフ作成 */
+51         ods listing gpath="C:\Users\user\Documents\DataScientist\PortFolio\Netflix" style=htmlblue2;
+52         axis2 label=(font=mincho h=1.5 ANGLE=-90 ROTATE=90 '性別');
+53         proc sgplot data= work.netflix_tran;
+54         	vline rating_/response=Movie;
+55         	vline rating_/response='tv show'n;
+56         run;
+
+NOTE: PROCEDURE SGPLOT処理(合計処理時間):
+      処理時間           1.01 秒
+      CPU時間            0.50 秒
+      
+NOTE: C:\Users\user\Documents\DataScientist\PortFolio\Netflix\SGPlot12.pngに書き込まれたイメージ出力を一覧表示します。
+NOTE: データセットWORK.NETFLIX_TRANから8オブザベーションを読み込みました。
+
+57         
+58         GOPTIONS NOACCESSIBLE;
+59         %LET _CLIENTTASKLABEL=;
+60         %LET _CLIENTPROCESSFLOWNAME=;
+61         %LET _CLIENTPROJECTPATH=;
+62         %LET _CLIENTPROJECTPATHHOST=;
+63         %LET _CLIENTPROJECTNAME=;
+64         %LET _SASPROGRAMFILE=;
+65         %LET _SASPROGRAMFILEHOST=;
+66         
+67         ;*';*";*/;quit;run;
+68         ODS _ALL_ CLOSE;
+69         
+70         
+71         QUIT; RUN;
+72         
