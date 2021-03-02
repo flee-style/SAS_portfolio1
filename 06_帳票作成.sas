@@ -4,7 +4,11 @@ data table1;
 run;
 
 /*--- ワードに出力 ---*/
+<<<<<<< HEAD
 ods rtf file = "&outpath.\nexflix.rtf" style=Styles.Default  ;
+=======
+ods rtf file = 'C:\Users\user\Documents\データサイエンティスト\ポートフォリオ作成\output\nexflix.rtf' style=Styles.Default  ;
+>>>>>>> origin/main
 proc report data=work.netflix_tran missing
 	style(column) = {asis=off background=white vjust=center};
 	column rating_ ('ムービータイプ' Movie 'tv show'n);

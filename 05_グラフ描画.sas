@@ -22,7 +22,11 @@ filename graph "&outpath.\gragh.htm" ;
 ods html style=htmlblue2 path="&outpath." file='graph.html' ;
 
 /* 折れ線グラフ作成 */
+<<<<<<< HEAD
 ods listing gpath="C:\Users\user\Documents\DataScientist\PortFolio\Netflix" style=htmlblue2;
+=======
+ods listing gpath="C:\Users\user\Documents\データサイエンティスト\ポートフォリオ作成" style=htmlblue2;
+>>>>>>> origin/main
 axis2 label=(font=mincho h=1.5 ANGLE=-90 ROTATE=90 '性別');
 proc sgplot data= work.netflix_tran;
 	vline rating_/response=Movie;
